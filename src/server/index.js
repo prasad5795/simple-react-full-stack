@@ -8,10 +8,10 @@ app.use(express.static("csv files"));
 app.get("/api/getUsername", (req, res) =>
   res.send({ username: os.userInfo().username })
 );
-app.get("/api/getDataFromCSV", async (req, res) => {
-  console.log(csvFileParser.extractDataFromCSV());
-  const data = await csvFileParser.extractDataFromCSV();
-  console.log("apis", data.length);
+app.get("/api/getDataFromCSV/:indices", async (req, res) => {
+  const indices = req.params.indices;
+  const data = await csvFileParser.extractDataFromCSV(indices);
+  console.log("apissss", data.length);
   res.send(data);
 });
 

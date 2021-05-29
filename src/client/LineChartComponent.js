@@ -16,7 +16,10 @@ import {
 const dateFormatter = (item) => new Date(item).toLocaleDateString();
 
 export const LineChartComponent = ({ data, label }) => {
-  console.log("LineChartComponent", data);
+  // console.log("LineChartComponent", data);
+  if (label == "onGoingTradesArr") {
+    console.log(data);
+  }
   return (
     <div className="graphDiv">
       <h3>{label}</h3>
@@ -33,7 +36,7 @@ export const LineChartComponent = ({ data, label }) => {
           <YAxis />
           <Tooltip labelFormatter={dateFormatter} />
           <Line dataKey="value" fill="red" />
-          <Line dataKey="totaltrades" fill="green" />
+          {/* <Line dataKey="totaltrades" fill="green" /> */}
         </LineChart>
       </ResponsiveContainer>
     </div>

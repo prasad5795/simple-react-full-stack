@@ -1,10 +1,22 @@
-const testFolder = "csv files/29-5-2021";
+const nifty50Folder = "csv files/29-5-2021/Nifty50";
+const niftyNext50Folder = "csv files/29-5-2021/NiftyNext50";
+const niftyMidcap50Folder = "csv files/29-5-2021/NiftyMidcap50";
+const niftySmallcap50Folder = "csv files/29-5-2021/NiftySmallcap50";
 const fs = require("fs");
 const path = require("path");
 const csv = require("csvtojson");
 
-function extractDataFromCSV() {
+function extractDataFromCSV(indices) {
   let companyTrades = [];
+  const mapOfIndices = {
+    nifty50: nifty50Folder,
+    niftyNext50: niftyNext50Folder,
+    niftyMidcap50: niftyMidcap50Folder,
+    niftySmallcap50: niftySmallcap50Folder,
+  };
+  let testFolder = mapOfIndices[indices];
+
+  // let testFolder = niftySmallcap50Folder;
   return new Promise((resolve, reject) => {
     fs.readdir(testFolder, (err, files) => {
       if (err) {
@@ -29,18 +41,9 @@ function extractDataFromCSV() {
                   trade.stockName = stockName;
                   return trade;
                 });
-              // for (let i = 0; i < jsonObj.length; i++) {
-              //   jsonObj[i].timeStamp = jsonObj[i]["Date/Time"] ? new Date(
-              //     Date.parse(jsonObj[i]["Date/Time"])
-              //   ).valueOf():new Date().valueOf();
-              // }
               companyTrades = companyTrades.concat(...jsonObj);
               if (index + 1 == files.length) {
                 companyTrades = companyTrades.sort((a, b) => {
-                  const date1 = a["Date/Time"];
-                  const date2 = b["Date/Time"];
-                  // return new Date(Date.parse(a["Date/Time"])).valueOf() - new Date(Date.parse(b["Date/Time"])).valueOf()
-                  // return date1 - date2
                   if (a.timeStamp && b.timeStamp)
                     return a.timeStamp - b.timeStamp;
                 });
