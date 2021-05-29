@@ -1,23 +1,29 @@
-import React, { Component } from 'react';
-import './app.css';
-import ReactImage from './react.png';
+import React, { Component } from "react";
+import "./app.css";
+import ReactImage from "./react.png";
+import { analyzeDataWithoutMoneyLimit } from "./utils";
 
-export default class App extends Component {
-  state = { username: null };
+export default function App() {
+  const username = "Shrikrishna";
 
-  componentDidMount() {
-    fetch('/api/getUsername')
-      .then(res => res.json())
-      .then(user => this.setState({ username: user.username }));
-  }
+  const onBtnClick = () => {
+    console.log("btn clickd");
+    fetch("/api/getDataFromCSV")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data received", data);
+        analyzeDataWithoutMoneyLimit(data);
+      });
+  };
 
-  render() {
-    const { username } = this.state;
-    return (
-      <div>
-        {username ? <h1>{`Hello ${username}`}</h1> : <h1>Loading.. please wait!</h1>}
-        <img src={ReactImage} alt="react" />
-      </div>
-    );
-  }
+  return (
+    <div>
+      {username ? (
+        <h1>{`Hello ${username}`}</h1>
+      ) : (
+        <h1>Loading.. please wait!</h1>
+      )}
+      <button onClick={onBtnClick}>button</button>
+    </div>
+  );
 }
