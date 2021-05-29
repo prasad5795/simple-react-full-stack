@@ -26,10 +26,10 @@ function extractDataFromCSV() {
                   trade.timeStamp = new Date(
                     Date.parse(trade["Date/Time"])
                   ).valueOf();
+                  trade.stockName = stockName;
                   return trade;
                 });
               // for (let i = 0; i < jsonObj.length; i++) {
-              //   jsonObj[i].stockName = stockName;
               //   jsonObj[i].timeStamp = jsonObj[i]["Date/Time"] ? new Date(
               //     Date.parse(jsonObj[i]["Date/Time"])
               //   ).valueOf():new Date().valueOf();

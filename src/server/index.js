@@ -11,7 +11,7 @@ app.get("/api/getUsername", (req, res) =>
 app.get("/api/getDataFromCSV", async (req, res) => {
   console.log(csvFileParser.extractDataFromCSV());
   const data = await csvFileParser.extractDataFromCSV();
-  console.log("api", data.length);
+  console.log("apis", data.length);
   res.send(data);
 });
 

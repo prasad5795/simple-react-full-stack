@@ -6,3 +6,13 @@ body {
   text-align: center;
   margin: auto;
 }
+
+.allGraphsContainerDiv {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.graphDiv {
+  /* background-color: yellow; */
+  width: 50%;
+}
