@@ -27,18 +27,6 @@ export default function LineChartContainerComponent({ indices, limitOfMoney=5000
       .then((res) => res.json())
       .then((data) => {
         const dataReceived = analyzeDataWithoutMoneyLimit(data, limitOfMoney);
-        console.log(dataReceived);
-        // const {currentInvestedAmount,
-        //     profitAccumulated,
-        //     newlyInvestedMoney,
-        //     totalMoneyUsedForBuying,
-        //     numberOfTradesReusedMoney,
-        //     totalMoneyReused,
-        //     winningTrades,
-        //     loosingTrades,
-        //     totalProfit,
-        //     totalLoss,
-        //     onGoingTrades} = dataReceived
         setResults(dataReceived);
         setcurrentInvestedAmountArr(dataReceived.currentInvestedAmountArr);
         setprofitAccumulatedArr(dataReceived.profitAccumulatedArr);
@@ -59,66 +47,64 @@ export default function LineChartContainerComponent({ indices, limitOfMoney=5000
   return (
     <div>
       <button onClick={onBtnClick}>Analyze {indices}</button>
-      <div>
-          <table>
-              <tr><td>currentInvestedAmount</td><td>{results.currentInvestedAmount}</td></tr>
-              <tr><td>profitAccumulated</td><td>{results.profitAccumulated}</td></tr>
-              <tr><td>newlyInvestedMoney</td><td>{results.newlyInvestedMoney}</td></tr>
-              <tr><td>profitPercentage</td><td>{results.profitPercentage}</td></tr>
-              <tr><td>totalMoneyUsedForBuying</td><td>{results.totalMoneyUsedForBuying}</td></tr>
-              <tr><td>numberOfTradesReusedMoney</td><td>{results.numberOfTradesReusedMoney}</td></tr>
-              <tr><td>totalMoneyReused</td><td>{results.totalMoneyReused}</td></tr>
-              <tr><td>winningTrades</td><td>{results.winningTrades}</td></tr>
-              <tr><td>loosingTrades</td><td>{results.loosingTrades}</td></tr>
-              <tr><td>totalProfit</td><td>{results.totalProfit}</td></tr>
-              <tr><td>totalLoss</td><td>{results.totalLoss}</td></tr>            
-              <tr><td>onGoingTrades</td><td>{results.onGoingTrades}</td></tr>            
+      <div className="tableDiv">
+          <table border={1}>
+              <tr><td>current Invested Amount</td><td>{results.currentInvestedAmount}</td></tr>
+              <tr><td>profit Accumulated</td><td>{results.profitAccumulated}</td></tr>
+              <tr><td>newly Invested Money</td><td>{results.newlyInvestedMoney}</td></tr>
+              <tr><td>profit Percentage</td><td>{results.profitPercentage}</td></tr>
+              <tr><td>total Money Used For Buying</td><td>{results.totalMoneyUsedForBuying}</td></tr>
+              <tr><td>number Of Trades Reused Money</td><td>{results.numberOfTradesReusedMoney}</td></tr>
+              <tr><td>total Money Reused</td><td>{results.totalMoneyReused}</td></tr>
+              <tr><td>winning Trades</td><td>{results.winningTrades}</td></tr>
+              <tr><td>loosing Trades</td><td>{results.loosingTrades}</td></tr>
+              <tr><td>total Profit</td><td>{results.totalProfit}</td></tr>
+              <tr><td>total Loss</td><td>{results.totalLoss}</td></tr>            
+              <tr><td>on Going Trades</td><td>{results.onGoingTrades}</td></tr>            
           </table>
       </div>
       <div className="allGraphsContainerDiv">
         <LineChartComponent
           data={currentInvestedAmountArr}
-          label="currentInvestedAmount"
+          label="current Invested Amount"
         ></LineChartComponent>
         <LineChartComponent
           data={newlyInvestedMoneyArr}
-          label="newlyInvestedMoney"
+          label="newly Invested Money"
         ></LineChartComponent>
         <LineChartComponent
           data={totalMoneyUsedForBuyingArr}
-          label="totalMoneyUsedForBuying"
+          label="total Money Used For Buying"
         ></LineChartComponent>
         <LineChartComponent
           data={totalMoneyReusedArr}
-          label="totalMoneyReused"
+          label="total Money Reused"
         ></LineChartComponent>
         <LineChartComponent
           data={numberOfTradesReusedMoneyArr}
-          label="numberOfTradesReusedMoney"
+          label="number Of Trades Reused Money"
         ></LineChartComponent>
         <LineChartComponent
           data={onGoingTradesArr}
-          label="onGoingTradesArr"
+          label="on Going Trades"
         ></LineChartComponent>
         <LineChartComponent
           data={winningTradesArr}
-          label="winningTrades"
+          label="winning Trades"
         ></LineChartComponent>
         <LineChartComponent
           data={loosingTradesArr}
-          label="loosingTrades"
+          label="loosing Trades"
         ></LineChartComponent>
         <LineChartComponent
           data={totalProfitArr}
-          label="totalProfit"
+          label="total Profit"
         ></LineChartComponent>
         <LineChartComponent
           data={profitAccumulatedArr}
-          label="profitAccumulated"
+          label="profit Accumulated"
         ></LineChartComponent>
-        
       </div>
-      
     </div>
   );
 }

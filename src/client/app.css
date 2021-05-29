@@ -16,3 +16,8 @@ body {
   /* background-color: yellow; */
   width: 50%;
 }
+
+.tableDiv {
+  display: flex;
+  justify-content: center;
+}
