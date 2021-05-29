@@ -18,7 +18,7 @@ export default function App() {
       ) : (
         <h1>Loading.. please wait!</h1>
       )}
-      <input onChange={onChangeLimit} value={limitOfMoney}/>
+      Limit Of MONEYY<input onChange={onChangeLimit} value={limitOfMoney}/>
       <hr/>      <hr/>      <hr/>
       <LineChartContainerComponent indices="nifty50" limitOfMoney={limitOfMoney}></LineChartContainerComponent>
       <hr/>      <hr/>      <hr/>
