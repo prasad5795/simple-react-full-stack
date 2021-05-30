@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./app.css";
 import ReactImage from "./react.png";
-import { analyzeDataWithoutMoneyLimit } from "./utils";
+import { analyzeDataWithoutMoneyLimit, analyzeDataWithMoneyLimitAndRegularAdditionOfMoneyWithExtraCash } from "./utils";
 import { LineChartComponent } from "./LineChartComponent";
 export default function LineChartContainerComponent({ indices, limitOfMoney=5000 }) {
   const username = "Shrikrishna";
@@ -26,7 +26,7 @@ export default function LineChartContainerComponent({ indices, limitOfMoney=5000
     fetch("/api/getDataFromCSV/" + indices)
       .then((res) => res.json())
       .then((data) => {
-        const dataReceived = analyzeDataWithoutMoneyLimit(data, limitOfMoney);
+        const dataReceived = analyzeDataWithMoneyLimitAndRegularAdditionOfMoneyWithExtraCash(data, limitOfMoney);
         setResults(dataReceived);
         setcurrentInvestedAmountArr(dataReceived.currentInvestedAmountArr);
         setprofitAccumulatedArr(dataReceived.profitAccumulatedArr);
