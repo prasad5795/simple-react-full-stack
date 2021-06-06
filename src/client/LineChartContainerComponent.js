@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import "./app.css";
 import ReactImage from "./react.png";
-import { analyzeDataWithoutMoneyLimit, analyzeDataWithMoneyLimitAndRegularAdditionOfMoneyWithExtraCash } from "./utils";
+import {
+  analyzeDataWithoutMoneyLimit,
+  analyzeDataWithMoneyLimitAndRegularAdditionOfMoneyWithExtraCash,
+} from "./utils";
 import { LineChartComponent } from "./LineChartComponent";
-export default function LineChartContainerComponent({ indices, limitOfMoney=5000 }) {
+export default function LineChartContainerComponent({
+  indices,
+  limitOfMoney = 5000,
+  startDate,
+  endDate,
+}) {
   const username = "Shrikrishna";
   const [currentInvestedAmountArr, setcurrentInvestedAmountArr] = useState([]);
   const [profitAccumulatedArr, setprofitAccumulatedArr] = useState([]);
@@ -18,15 +26,21 @@ export default function LineChartContainerComponent({ indices, limitOfMoney=5000
   const [loosingTradesArr, setloosingTradesArr] = useState([]);
   const [totalProfitArr, settotalProfitArr] = useState([]);
   const [onGoingTradesArr, setonGoingTradesArr] = useState([]);
-  
+
   // totalLossArr;
-  const [results,setResults] = useState({})
+  const [results, setResults] = useState({});
   const onBtnClick = () => {
     console.log("btn clickd");
     fetch("/api/getDataFromCSV/" + indices)
       .then((res) => res.json())
       .then((data) => {
-        const dataReceived = analyzeDataWithMoneyLimitAndRegularAdditionOfMoneyWithExtraCash(data, limitOfMoney);
+        const dataReceived =
+          analyzeDataWithMoneyLimitAndRegularAdditionOfMoneyWithExtraCash(
+            data,
+            limitOfMoney,
+            startDate,
+            endDate
+          );
         setResults(dataReceived);
         setcurrentInvestedAmountArr(dataReceived.currentInvestedAmountArr);
         setprofitAccumulatedArr(dataReceived.profitAccumulatedArr);
@@ -48,20 +62,56 @@ export default function LineChartContainerComponent({ indices, limitOfMoney=5000
     <div>
       <button onClick={onBtnClick}>Analyze {indices}</button>
       <div className="tableDiv">
-          <table border={1}>
-              <tr><td>current Invested Amount</td><td>{results.currentInvestedAmount}</td></tr>
-              <tr><td>profit Accumulated</td><td>{results.profitAccumulated}</td></tr>
-              <tr><td>newly Invested Money</td><td>{results.newlyInvestedMoney}</td></tr>
-              <tr><td>profit Percentage</td><td>{results.profitPercentage}</td></tr>
-              <tr><td>total Money Used For Buying</td><td>{results.totalMoneyUsedForBuying}</td></tr>
-              <tr><td>number Of Trades Reused Money</td><td>{results.numberOfTradesReusedMoney}</td></tr>
-              <tr><td>total Money Reused</td><td>{results.totalMoneyReused}</td></tr>
-              <tr><td>winning Trades</td><td>{results.winningTrades}</td></tr>
-              <tr><td>loosing Trades</td><td>{results.loosingTrades}</td></tr>
-              <tr><td>total Profit</td><td>{results.totalProfit}</td></tr>
-              <tr><td>total Loss</td><td>{results.totalLoss}</td></tr>            
-              <tr><td>on Going Trades</td><td>{results.onGoingTrades}</td></tr>            
-          </table>
+        <table border={1}>
+          <tr>
+            <td>current Invested Amount</td>
+            <td>{results.currentInvestedAmount}</td>
+          </tr>
+          <tr>
+            <td>profit Accumulated</td>
+            <td>{results.profitAccumulated}</td>
+          </tr>
+          <tr>
+            <td>newly Invested Money</td>
+            <td>{results.newlyInvestedMoney}</td>
+          </tr>
+          <tr>
+            <td>profit Percentage</td>
+            <td>{results.profitPercentage}</td>
+          </tr>
+          <tr>
+            <td>total Money Used For Buying</td>
+            <td>{results.totalMoneyUsedForBuying}</td>
+          </tr>
+          <tr>
+            <td>number Of Trades Reused Money</td>
+            <td>{results.numberOfTradesReusedMoney}</td>
+          </tr>
+          <tr>
+            <td>total Money Reused</td>
+            <td>{results.totalMoneyReused}</td>
+          </tr>
+          <tr>
+            <td>winning Trades</td>
+            <td>{results.winningTrades}</td>
+          </tr>
+          <tr>
+            <td>loosing Trades</td>
+            <td>{results.loosingTrades}</td>
+          </tr>
+          <tr>
+            <td>total Profit</td>
+            <td>{results.totalProfit}</td>
+          </tr>
+          <tr>
+            <td>total Loss</td>
+            <td>{results.totalLoss}</td>
+          </tr>
+          <tr>
+            <td>on Going Trades</td>
+            <td>{results.onGoingTrades}</td>
+          </tr>
+        </table>
       </div>
       <div className="allGraphsContainerDiv">
         <LineChartComponent

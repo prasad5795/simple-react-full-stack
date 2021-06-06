@@ -13,6 +13,8 @@ import { JsonToTable } from "react-json-to-table";
 export default function LineChartContainerComponent({
   indices,
   limitOfMoney = 5000,
+  startDate,
+  endDate
 }) {
   const username = "Shrikrishna";
   const [results, setResults] = useState({});
@@ -26,7 +28,9 @@ export default function LineChartContainerComponent({
         const dataReceived =
           analyzeDataWithMoneyLimitAndRegularAdditionOfMoneyWithExtraCash(
             data,
-            limitOfMoney
+            limitOfMoney,
+            startDate,
+            endDate
           );
         setResults(groupByMonthAndYear(dataReceived.dataWithAdditionalInfo));
         console.log(dataReceived);

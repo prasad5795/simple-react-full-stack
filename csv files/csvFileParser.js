@@ -1,7 +1,8 @@
-const nifty50Folder = "csv files/29-5-2021/Nifty50";
-const niftyNext50Folder = "csv files/29-5-2021/NiftyNext50";
-const niftyMidcap50Folder = "csv files/29-5-2021/NiftyMidcap50";
-const niftySmallcap50Folder = "csv files/29-5-2021/NiftySmallcap50";
+const dateFolder = "06-06-2021";
+const nifty50Folder = "csv files/" + dateFolder + "/Nifty50";
+const niftyNext50Folder = "csv files/" + dateFolder + "/NiftyNext50";
+const niftyMidcap50Folder = "csv files/" + dateFolder + "/NiftyMidcap50";
+const niftySmallcap50Folder = "csv files/" + dateFolder + "/NiftySmallcap50";
 const fs = require("fs");
 const path = require("path");
 const csv = require("csvtojson");
